@@ -12,9 +12,7 @@ RUN mkdir -p /var/run/vsftpd/empty \
 
 COPY init /
 
-VOLUME ["/var/ftp"]
-
 EXPOSE 20-21
-EXPOSE 65500-65515
+EXPOSE 20-21 21100-21110
 
 ENTRYPOINT ["/init"]

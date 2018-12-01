@@ -1,7 +1,18 @@
-ftpd:
-    build: .
+---
+version: '3'
+services:
+  ftp:
+    container_name: vsftpd
+    image: unxmaal/vsftpd
+    environment:
+      - PASSIVE_IP=209.195.4.155
+      - MAX_PORT=21100
+      - MAX_PORT=21110
     ports:
-        - "20-21:20-21"
-        - "65500-65515:65500-65515"
+    -  209.195.4.155:20-21:20-21
+    -  209.195.4.155:21100-21110:21100-21110
     volumes:
-        - "/tmp:/var/ftp:ro"
+    - ./data/pub:/var/ftp/pub/:ro
+    - ./data/incoming:/var/ftp/pub/incoming/:rw
+    - /etc/passwd:/etc/passwd:ro
+    - /etc/groups:/etc/groups:ro
